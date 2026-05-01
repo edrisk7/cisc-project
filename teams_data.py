@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+#player dataclass
 @dataclass
 class Player:
     name: str
@@ -10,13 +11,15 @@ class Player:
     apg: float
     rpg: float
 
+#team data class
 @dataclass
 class Team:
     name: str
     conference: str
     rating: int
     members: list[Player]
-
+    
+# teams 4 east 4 west, Players Position stats and ratings 
 sixers = Team("Sixers","East",8,[
     Player("Maxey","G",113,98,27,6,4),
     Player("Embiid","C",112,110,27,4,8),
