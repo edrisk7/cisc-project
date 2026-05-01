@@ -189,7 +189,8 @@ def save_predictions(state: State,
         Button("Edit Predictions", prediction_sheet),
         Button("Back Home", index)
     ])
-
+                         
+#initial conditions to avoid need for error msgs and None
 start_server(State(
     "Sixers",
     "Lakers",
