@@ -1,6 +1,15 @@
 from drafter import *
 from teams_data import *
-
+set_site_information(
+    author="your_email@udel.edu",
+    description="""NBA game simulator with 8 of my favorite teams to make poredictions and earn points.""",
+    sources=["https://www.espn.com/nba/teams"],
+    planning=["your_planning_document.pdf"],
+    links=["https://github.com/edrisk7/cisc-project"]
+)
+hide_debug_information()
+set_website_title("Your Website Title")
+set_website_framed(False)
 @dataclass
 class State:
     home_team: str
