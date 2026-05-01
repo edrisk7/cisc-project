@@ -76,11 +76,8 @@ def rules(state: State) -> Page:
         Text("1. Pick a home team and an away team."),
         Text("2. Fill out the prediction sheet before the game starts."),
         Text("3. You will predict the winner and choose Over or Under for player stat lines."),
-        Text("4. The stat lines are based on the players shown on the prediction page."),
-        Text("5. After predictions are saved, the game will be simulated."),
-        Text("6. Team rating controls how many possession loops each team gets."),
-        Text("7. Each possession gives a team 0 to 3 points."),
-        Text("8. After the game, your predictions will be checked and you will earn points for correct picks."),
+        Text("4. After predictions are saved, the game will be simulated."),
+        Text("5. After the game, your predictions will be evaluated and you will earn points for correct picks and lose points for incorrect points."),
         Button("Pick Teams", pick_teams),
         Button("Back Home", index)
     ])
@@ -106,17 +103,17 @@ def save_matchup(state: State, home_team: str, away_team: str) -> Page:
     if home_team == away_team:
         return Page(state, [
             Header("Matchup Error"),
-            Text("Please pick two different teams."),
+            Text("Pick two different teams."),
             Button("Pick Again", pick_teams),
-            Button("Back Home", index)
+            Button("Home", index)
         ])
 
     return Page(state, [
         Header("Matchup Saved"),
         Text(state.home_team + " vs " + state.away_team),
-        Button("Fill Out Predictions", prediction_sheet),
+        Button("Select Predictions", prediction_sheet),
         Button("Change Teams", pick_teams),
-        Button("Back Home", index)
+        Button("Home", index)
     ])
 
 @route
@@ -129,7 +126,7 @@ def prediction_sheet(state: State) -> Page:
 
     content = [
         Header("Prediction Sheet"),
-        Text("Pick the winner and choose Over or Under for each player line."),
+        Text("Pick the winner and choose Over or Under for each line."),
         Text("Game Winner:"),
         SelectBox("predicted_winner", [state.home_team, state.away_team], state.predicted_winner),
         Text("")
@@ -194,7 +191,6 @@ def save_predictions(state: State,
     return Page(state, [
         Header("Predictions Saved"),
         Text("Winner: " + state.predicted_winner),
-        Text("Your predictions are saved. Next we will add the simulation page."),
         Button("Edit Predictions", prediction_sheet),
         Button("Back Home", index)
     ])
